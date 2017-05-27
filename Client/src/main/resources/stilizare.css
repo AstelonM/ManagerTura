@@ -1,0 +1,11 @@
+.vbox
+{
+    -fx-background-color: darkred;
+}
+.scroll-pane
+{
+    -fx-fill-height: true;
+    -fx-fill-width: true;
+    -fx-fit-to-height: true;
+    -fx-fit-to-width: true;
+}
