@@ -1,11 +1,12 @@
 .vbox
 {
-    -fx-background-color: darkred;
+    -fx-background-color: royalblue;
+    -fx-spacing: 8px;
+    -fx-padding: 8px;
 }
-.scroll-pane
+.label_pos
 {
-    -fx-fill-height: true;
-    -fx-fill-width: true;
-    -fx-fit-to-height: true;
-    -fx-fit-to-width: true;
+    -fx-font-size: 24px;
+    -fx-font-family: "Arial Black";
+    -fx-fill: #818181;
 }

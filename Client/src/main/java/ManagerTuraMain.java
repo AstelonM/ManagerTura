@@ -5,15 +5,18 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.ComboBoxListCell;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.time.YearMonth;
 import java.time.format.TextStyle;
@@ -22,11 +25,13 @@ import java.util.Locale;
 
 public class ManagerTuraMain extends Application {
 
-    private ScrollPane center;
-    private VBox center2;
+    //private ScrollPane center;
+    private VBox center;
     private TableView calendar;
-    public static final ObservableList<String> test = FXCollections.observableArrayList();
-    private ListView<String> testLista = new ListView<>();
+
+    static final ObservableList<String> test = FXCollections.observableArrayList();
+    private ListView<String> listaAngajati = new ListView<>();
+    private ListView<String> listaPosturi = new ListView<>();
 
     public static void main(String[] args) {
         launch(args);
@@ -34,14 +39,11 @@ public class ManagerTuraMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        //Parent root = FXMLLoader.load(getClass().getResource("/main/resources/manager_tura.fxml"));
         BorderPane root = new BorderPane();
         AnchorPane top = new AnchorPane();
-        //bottom
-        VBox left = new VBox();
-        //right
-        center = new ScrollPane();
-        center2 = new VBox();
+        VBox left = new VBox(8);
+        VBox right = new VBox(8);
+        center = new VBox();
         calendar = new TableView();
 
         //Initializare top
@@ -67,47 +69,127 @@ public class ManagerTuraMain extends Application {
         top.getChildren().addAll(meniu);
 
         //Initializeaza layout-ul de afisare a lunii curente
-        initModLuna(null);
-        //Initializare bottom
+        //initModLuna(null);
 
         //Initializare left
-        left.setAlignment(Pos.CENTER);
-        left.setSpacing(5);
-        left.setPadding(new Insets(10, 10, 10, 10));
-        left.getStyleClass().add("vbox");
         test.addAll("Test1", "Test2", "Test3", "Test4", "Test5", "Test6", "Test7", "Test8", "Test9", "Test10");
-        testLista.setItems(test);
-        left.getChildren().add(testLista);
-        testLista.setEditable(false);
-        testLista.setCellFactory(ComboBoxListCell.forListView(test));
+        listaAngajati.setItems(test);
+        listaAngajati.setEditable(false);
+        listaAngajati.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                ListCell<String> celula = new ListCell<String>()
+                {
+                    @Override
+                    protected void updateItem( String item, boolean empty )
+                    {
+                        super.updateItem( item, empty );
+                        setText( item );
+                    }
+                };
+                celula.setOnDragDetected(event -> {
+                    Dragboard db = celula.startDragAndDrop( TransferMode.COPY );
+                    ClipboardContent content = new ClipboardContent();
+                    content.putString( celula.getItem() );
+                    db.setContent( content );
+                    event.consume();
+                });
+                return celula;
+            }
+        });
+        HBox leftLabelBox = new HBox();
+        leftLabelBox.setAlignment(Pos.CENTER_LEFT);
+        Label leftLabel = new Label("Angajati:");
+        leftLabelBox.getChildren().add(leftLabel);
+        left.setAlignment(Pos.TOP_CENTER);
+        //left.setPadding(new Insets(10, 10, 10, 10));
+        left.getChildren().addAll(leftLabelBox, listaAngajati);
 
 
         //Initializare right
+        //test.addAll("Test1", "Test2", "Test3", "Test4", "Test5", "Test6", "Test7", "Test8", "Test9", "Test10");
+        listaPosturi.setItems(test);
+        listaPosturi.setEditable(false);
+        listaPosturi.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                ListCell<String> celula = new ListCell<String>()
+                {
+                    @Override
+                    protected void updateItem( String item, boolean empty )
+                    {
+                        super.updateItem( item, empty );
+                        setText( item );
+                    }
+                };
+                celula.setOnDragDetected(event -> {
+                    Dragboard db = celula.startDragAndDrop( TransferMode.COPY );
+                    ClipboardContent content = new ClipboardContent();
+                    content.putString( celula.getItem() );
+                    db.setContent( content );
+                    event.consume();
+                });
+                return celula;
+            }
+        });
+        HBox rightLabelBox = new HBox();
+        rightLabelBox.setAlignment(Pos.CENTER_LEFT);
+        Label rightLabel = new Label("Posturi:");
+        rightLabelBox.getChildren().add(rightLabel);
+        right.setAlignment(Pos.TOP_CENTER);
+        //right.setSpacing(8);
+        //right.setPadding(new Insets(10, 10, 10, 10));
+        right.getChildren().addAll(rightLabelBox, listaPosturi);
 
         //Initializare center
-        center2 = new VBox();
-        center2.setAlignment(Pos.CENTER);
-        center2.setSpacing(5);
-        center2.setPadding(new Insets(10, 10, 10, 10));
-        center2.getStyleClass().add("vbox");
         TableColumn dataCol = new TableColumn("Data");
         TableColumn tura1Col = new TableColumn("Tura de Noapte");
         TableColumn tura2Col = new TableColumn("Tura de Zi");
         TableColumn tura3Col = new TableColumn("Tura de Seara");
         calendar.getColumns().addAll(dataCol, tura1Col, tura2Col, tura3Col);
-        center2.getChildren().addAll(calendar);
-        center.setContent(center2);
-        center.getStyleClass().add("scroll-pane");
-        BorderPane.setAlignment(center, Pos.CENTER);
+        calendar.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        HBox centerLabelBox = new HBox();
+        centerLabelBox.setAlignment(Pos.CENTER);
+        Label centerLabel = new Label("Calendar:");
+        centerLabelBox.getChildren().addAll(centerLabel);
+        centerLabel.setOnDragOver(event -> {
+            if (event.getGestureSource() != centerLabel &&
+                    event.getDragboard().hasString()) {
+                event.acceptTransferModes(TransferMode.ANY);
+            }
 
+            event.consume();
+        });
+        centerLabel.setOnDragDropped(event -> {
+            Dragboard db = event.getDragboard();
+            boolean success = false;
+            if (db.hasString()) {
+                centerLabel.setText(db.getString());
+                success = true;
+            }
+            event.setDropCompleted(success);
+            event.consume();
+        });
+        center.setAlignment(Pos.TOP_CENTER);
+        //center.setSpacing(8);
+        //center.setPadding(new Insets(10, 10, 10, 10));
+        center.getChildren().addAll(centerLabelBox, calendar);
+
+        //BorderPane.setAlignment(center, Pos.TOP_CENTER);
         //Totul vine impreuna aici
         root.setTop(top);
-        //root.setBottom(bottom);
         root.setLeft(left);
-        //root.setRight(right);
+        root.setRight(right);
         root.setCenter(center);
+        //root.setBottom(bottom);
 
         Scene scene = new Scene(root, 300, 275);
+        left.getStyleClass().addAll("vbox");
+        right.getStyleClass().addAll("vbox");
+        center.getStyleClass().addAll("vbox");
+        leftLabel.getStyleClass().addAll("label_pos");
+        rightLabel.getStyleClass().addAll("label_pos");
+        centerLabel.getStyleClass().addAll("label_pos");
         scene.getStylesheets().add("main/resources/stilizare.css");
 
         stage.setTitle("Manager de Tura");
