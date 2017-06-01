@@ -5,10 +5,10 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
@@ -16,7 +16,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 import java.time.YearMonth;
 import java.time.format.TextStyle;
@@ -28,10 +27,33 @@ public class ManagerTuraMain extends Application {
     //private ScrollPane center;
     private VBox center;
     private TableView calendar;
+    private Stage fereastraDialog;
 
-    static final ObservableList<String> test = FXCollections.observableArrayList();
-    private ListView<String> listaAngajati = new ListView<>();
-    private ListView<String> listaPosturi = new ListView<>();
+    private ObservableList<Angajat> angajati = FXCollections.observableArrayList();
+    private ObservableList<Post> posturi = FXCollections.observableArrayList();
+    private ListView<Angajat> listaAngajati = new ListView<>();
+    private ListView<Post> listaPosturi = new ListView<>();
+
+    private final String modAngajat = "Angajat";
+    private final String modPost = "Post";
+
+    private class AdaugaEventHandler implements EventHandler<ActionEvent> {
+
+        private String mod;
+
+        AdaugaEventHandler(String mod) {
+            this.mod = mod;
+        }
+
+        @Override
+        public void handle(ActionEvent event) {
+            if(fereastraDialog == null) {
+                DialogInput dialog = new DialogInput(mod, getApplication());
+                fereastraDialog = dialog.start();
+                fereastraDialog.showAndWait();
+            }
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);
@@ -52,30 +74,25 @@ public class ManagerTuraMain extends Application {
         MenuItem meniuFileExit = new MenuItem("Exit");
         meniuFile.getItems().add(meniuFileExit);
         Menu meniuMod = new Menu("Mod");
-        MenuItem meniuModAdd = new MenuItem("Adauga angajati/posturi");
-        meniuModAdd.setId("add");
-        meniuModAdd.setOnAction(this::initModAdd);
+        MenuItem meniuModAdaugaAngajati = new MenuItem("Adauga angajati");
+        meniuModAdaugaAngajati.setOnAction(new AdaugaEventHandler(modAngajat));
+        MenuItem meniuModAdaugaPosturi = new MenuItem("Adauga posturi");
+        meniuModAdaugaPosturi.setOnAction(new AdaugaEventHandler(modPost));
         MenuItem meniuModTure = new MenuItem("Stabileste turele");
-        meniuModTure.setId("ture");
         meniuModTure.setOnAction(this::initModTure);
         MenuItem meniuModLuna = new MenuItem("Afiseaza luna curenta");
-        meniuModLuna.setId("luna");
         meniuModLuna.setOnAction(this::initModLuna);
-        meniuMod.getItems().addAll(meniuModAdd, meniuModTure, meniuModLuna);
+        meniuMod.getItems().addAll(meniuModAdaugaAngajati, meniuModAdaugaPosturi, meniuModTure, meniuModLuna);
         meniu.getMenus().addAll(meniuFile, meniuMod);
         AnchorPane.setTopAnchor(meniu, 0.0);
         AnchorPane.setLeftAnchor(meniu, 0.0);
         AnchorPane.setRightAnchor(meniu, 0.0);
         top.getChildren().addAll(meniu);
 
-        //Initializeaza layout-ul de afisare a lunii curente
-        //initModLuna(null);
-
         //Initializare left
-        test.addAll("Test1", "Test2", "Test3", "Test4", "Test5", "Test6", "Test7", "Test8", "Test9", "Test10");
-        listaAngajati.setItems(test);
+        listaAngajati.setItems(angajati);
         listaAngajati.setEditable(false);
-        listaAngajati.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+        /*listaAngajati.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
             public ListCell<String> call(ListView<String> param) {
                 ListCell<String> celula = new ListCell<String>()
@@ -96,21 +113,20 @@ public class ManagerTuraMain extends Application {
                 });
                 return celula;
             }
-        });
+        });*/
         HBox leftLabelBox = new HBox();
         leftLabelBox.setAlignment(Pos.CENTER_LEFT);
         Label leftLabel = new Label("Angajati:");
         leftLabelBox.getChildren().add(leftLabel);
-        left.setAlignment(Pos.TOP_CENTER);
+        //left.setAlignment(Pos.TOP_CENTER);
         //left.setPadding(new Insets(10, 10, 10, 10));
         left.getChildren().addAll(leftLabelBox, listaAngajati);
 
 
         //Initializare right
-        //test.addAll("Test1", "Test2", "Test3", "Test4", "Test5", "Test6", "Test7", "Test8", "Test9", "Test10");
-        listaPosturi.setItems(test);
+        listaPosturi.setItems(posturi);
         listaPosturi.setEditable(false);
-        listaPosturi.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+        /*listaPosturi.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
             public ListCell<String> call(ListView<String> param) {
                 ListCell<String> celula = new ListCell<String>()
@@ -131,12 +147,12 @@ public class ManagerTuraMain extends Application {
                 });
                 return celula;
             }
-        });
+        });*/
         HBox rightLabelBox = new HBox();
         rightLabelBox.setAlignment(Pos.CENTER_LEFT);
         Label rightLabel = new Label("Posturi:");
         rightLabelBox.getChildren().add(rightLabel);
-        right.setAlignment(Pos.TOP_CENTER);
+        //right.setAlignment(Pos.TOP_CENTER);
         //right.setSpacing(8);
         //right.setPadding(new Insets(10, 10, 10, 10));
         right.getChildren().addAll(rightLabelBox, listaPosturi);
@@ -150,8 +166,10 @@ public class ManagerTuraMain extends Application {
         calendar.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         HBox centerLabelBox = new HBox();
         centerLabelBox.setAlignment(Pos.CENTER);
-        Label centerLabel = new Label("Calendar:");
-        centerLabelBox.getChildren().addAll(centerLabel);
+        Label centerLabel = new Label("Calendar");
+        Label centerLeftArrow = new Label("<");
+        Label centerRightArrow = new Label(">");
+        centerLabelBox.getChildren().addAll(centerLeftArrow, centerLabel, centerRightArrow);
         centerLabel.setOnDragOver(event -> {
             if (event.getGestureSource() != centerLabel &&
                     event.getDragboard().hasString()) {
@@ -170,12 +188,9 @@ public class ManagerTuraMain extends Application {
             event.setDropCompleted(success);
             event.consume();
         });
-        center.setAlignment(Pos.TOP_CENTER);
-        //center.setSpacing(8);
-        //center.setPadding(new Insets(10, 10, 10, 10));
+        //center.setAlignment(Pos.TOP_CENTER);
         center.getChildren().addAll(centerLabelBox, calendar);
 
-        //BorderPane.setAlignment(center, Pos.TOP_CENTER);
         //Totul vine impreuna aici
         root.setTop(top);
         root.setLeft(left);
@@ -187,19 +202,20 @@ public class ManagerTuraMain extends Application {
         left.getStyleClass().addAll("vbox");
         right.getStyleClass().addAll("vbox");
         center.getStyleClass().addAll("vbox");
+        leftLabelBox.getStyleClass().addAll("label_box");
+        centerLabelBox.getStyleClass().addAll("label_box");
+        rightLabelBox.getStyleClass().addAll("label_box");
         leftLabel.getStyleClass().addAll("label_pos");
         rightLabel.getStyleClass().addAll("label_pos");
+        centerLeftArrow.getStyleClass().addAll("label_pos");
         centerLabel.getStyleClass().addAll("label_pos");
+        centerRightArrow.getStyleClass().addAll("label_pos");
         scene.getStylesheets().add("main/resources/stilizare.css");
 
+        stage.setMaximized(true);
         stage.setTitle("Manager de Tura");
         stage.setScene(scene);
         stage.show();
-    }
-
-    private void initModAdd(@Nullable ActionEvent event)
-    {
-
     }
 
     private void initModTure(@Nullable ActionEvent event)
@@ -223,6 +239,12 @@ public class ManagerTuraMain extends Application {
         int an = azi.getYear();
         String luna = (azi.getMonth().getDisplayName(TextStyle.FULL, new Locale("ro"))).toUpperCase();
 
+    }
+
+    private ManagerTuraMain getApplication() { return this; }
+
+    public void rezultatDialog(String rezultat, String mod) {
+        //TODO creaza angajatul/postul
     }
 
 }

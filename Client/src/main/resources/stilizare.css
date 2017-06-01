@@ -3,10 +3,27 @@
     -fx-background-color: royalblue;
     -fx-spacing: 8px;
     -fx-padding: 8px;
+    -fx-alignment: top-center;
 }
 .label_pos
 {
     -fx-font-size: 24px;
     -fx-font-family: "Arial Black";
     -fx-fill: #818181;
+}
+.label_box
+{
+    -fx-spacing: 8px;
+    -fx-padding: 8px;
+}
+#dialog
+{
+    -fx-hgap: 8px;
+    -fx-vgap: 8px;
+    -fx-alignment: center;
+    -fx-padding: 8px;
+}
+#label_eroare
+{
+    -fx-text-fill: darkred;
 }
