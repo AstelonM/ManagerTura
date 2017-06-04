@@ -21,4 +21,9 @@ public class Post implements Serializable, ProprietateSerializabila {
         else
             nume.set(numeRoot);
     }
+
+    @Override
+    public String toString() {
+        return numeRoot;
+    }
 }

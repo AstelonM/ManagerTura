@@ -19,9 +19,9 @@ public class Angajat implements Serializable, ProprietateSerializabila {
         return numeRoot;
     }
 
-    public String getNume() {
+    /*public String getNume() {
         return nume.get();
-    }
+    }*/
 
     public SimpleStringProperty numeProperty() {
         return nume;
@@ -33,5 +33,10 @@ public class Angajat implements Serializable, ProprietateSerializabila {
             nume = new SimpleStringProperty(numeRoot);
         else
             nume.set(numeRoot);
+    }
+
+    @Override
+    public String toString() {
+        return numeRoot;
     }
 }

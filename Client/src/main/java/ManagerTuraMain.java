@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 
 import java.time.YearMonth;
 import java.time.format.TextStyle;
+import java.util.ArrayList;
 import java.util.Locale;
 
 
@@ -67,7 +68,18 @@ public class ManagerTuraMain extends Application {
         VBox right = new VBox(8);
         center = new VBox();
         calendar = new TableView();
-
+        final ConexiuneServerAngajati conA = new ConexiuneServerAngajati(this);
+        /*conA.setOnSucceeded(event -> {
+            System.out.println("Event succeeded");
+            angajati.addAll(conA.getValue());
+            listaAngajati.setItems(angajati);
+            final ConexiuneServerPosturi conP = new ConexiuneServerPosturi();
+            conA.setOnSucceeded(event2 -> posturi.addAll(conP.getValue()));
+            conP.start();
+        });*/
+        conA.start();
+        final ConexiuneServerPosturi conP = new ConexiuneServerPosturi(this, conA);
+        conP.start();
         //Initializare top
         MenuBar meniu = new MenuBar();
         Menu meniuFile = new Menu("File");
@@ -92,22 +104,22 @@ public class ManagerTuraMain extends Application {
         //Initializare left
         listaAngajati.setItems(angajati);
         listaAngajati.setEditable(false);
-        /*listaAngajati.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+        /*listaAngajati.setCellFactory(new Callback<ListView<Angajat>, ListCell<Angajat>>() {
             @Override
-            public ListCell<String> call(ListView<String> param) {
-                ListCell<String> celula = new ListCell<String>()
+                public ListCell<Angajat> call(ListView<Angajat> param) {
+                ListCell<Angajat> celula = new ListCell<Angajat>()
                 {
                     @Override
-                    protected void updateItem( String item, boolean empty )
+                    protected void updateItem( Angajat item, boolean empty )
                     {
                         super.updateItem( item, empty );
-                        setText( item );
+                        setText( item.getNume() );
                     }
                 };
                 celula.setOnDragDetected(event -> {
                     Dragboard db = celula.startDragAndDrop( TransferMode.COPY );
                     ClipboardContent content = new ClipboardContent();
-                    content.putString( celula.getItem() );
+                    content.putString( celula.getItem().getNume() );
                     db.setContent( content );
                     event.consume();
                 });
@@ -211,7 +223,6 @@ public class ManagerTuraMain extends Application {
         centerLabel.getStyleClass().addAll("label_pos");
         centerRightArrow.getStyleClass().addAll("label_pos");
         scene.getStylesheets().add("main/resources/stilizare.css");
-
         stage.setMaximized(true);
         stage.setTitle("Manager de Tura");
         stage.setScene(scene);
@@ -244,7 +255,36 @@ public class ManagerTuraMain extends Application {
     private ManagerTuraMain getApplication() { return this; }
 
     public void rezultatDialog(String rezultat, String mod) {
-        //TODO creaza angajatul/postul
+        if(mod.equals(modAngajat)) {
+            Angajat a = new Angajat(rezultat);
+            for(Angajat i: angajati) {
+                if(i.getNumeRoot().equals(rezultat))
+                    return;
+            }
+            angajati.add(a);
+            new ConexiuneServerAdauga(Cerere.ANGAJAT_NOU, a).start();
+        }
+        else {
+            Post a = new Post(rezultat);
+            for (Post i : posturi) {
+                if (i.toString().equals(rezultat))
+                    return;
+            }
+            posturi.add(a);
+            new ConexiuneServerAdauga(Cerere.POST_NOU, a).start();
+        }
+        fereastraDialog = null;
+    }
+
+    public void rezultatAngajat(ArrayList<Angajat> lista) {
+        angajati.addAll(lista);
+        System.out.println("Am terminat queryul pentru angajati");
+        for(Angajat a: angajati)
+            System.out.println(a.getNumeRoot());
+    }
+
+    public void rezultatPost(ArrayList<Post> lista) {
+        posturi.addAll(lista);
     }
 
 }

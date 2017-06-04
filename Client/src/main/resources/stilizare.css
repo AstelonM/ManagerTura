@@ -27,3 +27,9 @@
 {
     -fx-text-fill: darkred;
 }
+#label_server
+{
+    -fx-font-size: 24px;
+    -fx-text-fill: darkred;
+    -fx-font-family: "Arial Black";
+}
