@@ -2,24 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62b573e4-2c75-4532-8610-5eade6b6feec" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Client/src/main/java/ConexiuneServerAdauga.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dataSources/6c325ee0-668b-4983-8627-93cc96d28a24.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Client/src/main/java/ManagerTuraController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Client/src/main/resources/manager_tura.fxml" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Client/src/main/java/CelulaAngajat.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Client/src/main/java/CelulaPost.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Client/src/main/java/DragDetectedEvent.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Shared/src/main/java/DataRoot.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/6368358d-eada-4779-8b1f-974932381dd6.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/6368358d-eada-4779-8b1f-974932381dd6.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/main/java/ConexiuneServerAdauga.java" afterPath="$PROJECT_DIR$/Client/src/main/java/ConexiuneServerAdauga.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/main/java/ConexiuneServerAngajati.java" afterPath="$PROJECT_DIR$/Client/src/main/java/ConexiuneServerAngajati.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/main/java/ConexiuneServerLuna.java" afterPath="$PROJECT_DIR$/Client/src/main/java/ConexiuneServerLuna.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/main/java/ConexiuneServerPosturi.java" afterPath="$PROJECT_DIR$/Client/src/main/java/ConexiuneServerPosturi.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/main/java/ManagerTuraMain.java" afterPath="$PROJECT_DIR$/Client/src/main/java/ManagerTuraMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Client/src/main/resources/stilizare.css" afterPath="$PROJECT_DIR$/Client/src/main/resources/stilizare.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/src/main/java/ConexiuneClient.java" afterPath="$PROJECT_DIR$/Server/src/main/java/ConexiuneClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/src/main/java/ServerMain.java" afterPath="$PROJECT_DIR$/Server/src/main/java/ServerMain.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shared/src/main/java/Angajat.java" afterPath="$PROJECT_DIR$/Shared/src/main/java/Angajat.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shared/src/main/java/Cerere.java" afterPath="$PROJECT_DIR$/Shared/src/main/java/Cerere.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shared/src/main/java/Post.java" afterPath="$PROJECT_DIR$/Shared/src/main/java/Post.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Shared/src/main/java/Zi.java" afterPath="$PROJECT_DIR$/Shared/src/main/java/Zi.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Shared/src/main/java/Port.java" afterPath="$PROJECT_DIR$/Shared/src/main/java/AdresaPort.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,48 +44,6 @@
     <option name="SHOW_TABLE_DETAILS" value="true" />
     <option name="SHOW_EMPTY_GROUPS" value="false" />
     <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="managertura@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="managertura@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="managertura" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="zi_de_lucru" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="managertura@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="managertura" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
@@ -94,61 +51,48 @@
       <file leaf-file-name="ManagerTuraMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/src/main/java/ManagerTuraMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="275" column="31" lean-forward="false" selection-start-line="275" selection-start-column="31" selection-end-line="275" selection-end-column="31" />
+            <state relative-caret-position="368">
+              <caret line="231" column="64" lean-forward="false" selection-start-line="231" selection-start-column="64" selection-end-line="231" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1408#1409#0" expanded="true" />
-                <element signature="e#1446#1447#0" expanded="true" />
-                <element signature="e#10909#10910#0" expanded="true" />
-                <element signature="e#10946#10947#0" expanded="true" />
-                <marker date="1496405451297" expanded="false" signature="4200:4370" ph="updateItem(item, empty) → {" />
-                <marker date="1496405451297" expanded="false" signature="4495:4518" ph="}" />
+                <element signature="class#AdaugaEventHandler#0;class#ManagerTuraMain#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DialogInput.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/src/main/java/DialogInput.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="819">
-              <caret line="39" column="57" lean-forward="true" selection-start-line="39" selection-start-column="57" selection-end-line="39" selection-end-column="57" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Zi.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Zi.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Zi.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="196" column="71" lean-forward="true" selection-start-line="196" selection-start-column="71" selection-end-line="196" selection-end-column="71" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServerMain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Server/src/main/java/ServerMain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="122" column="37" lean-forward="true" selection-start-line="122" selection-start-column="37" selection-end-line="122" selection-end-column="37" />
+            <state relative-caret-position="3444">
+              <caret line="226" column="24" lean-forward="true" selection-start-line="226" selection-start-column="24" selection-end-line="226" selection-end-column="24" />
               <folding>
-                <marker date="1496405706502" expanded="false" signature="871:969" ph="() → {" />
-                <marker date="1496405706502" expanded="false" signature="2212:2231" ph="}" />
+                <element signature="e#9306#9307#0" expanded="true" />
+                <element signature="e#9344#9345#0" expanded="true" />
+                <element signature="e#9399#9400#0" expanded="true" />
+                <element signature="e#9431#9432#0" expanded="true" />
+                <element signature="e#9463#9464#0" expanded="true" />
+                <element signature="e#9497#9498#0" expanded="true" />
+                <element signature="e#9548#9549#0" expanded="true" />
+                <element signature="e#9576#9577#0" expanded="true" />
+                <element signature="e#9608#9609#0" expanded="true" />
+                <element signature="e#9642#9643#0" expanded="true" />
+                <element signature="e#9693#9694#0" expanded="true" />
+                <element signature="e#9721#9722#0" expanded="true" />
+                <element signature="e#9753#9754#0" expanded="true" />
+                <element signature="e#9787#9788#0" expanded="true" />
+                <element signature="e#9838#9839#0" expanded="true" />
+                <element signature="e#9866#9867#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConexiuneServerAngajati.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/src/main/java/ConexiuneServerAngajati.java">
+      <file leaf-file-name="DragDetectedEvent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/src/main/java/DragDetectedEvent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+            <state relative-caret-position="735">
+              <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -159,8 +103,18 @@
       <file leaf-file-name="ConexiuneServerLuna.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/src/main/java/ConexiuneServerLuna.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="39" column="33" lean-forward="false" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+            <state relative-caret-position="504">
+              <caret line="41" column="32" lean-forward="true" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CelulaPost.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/src/main/java/CelulaPost.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -169,36 +123,29 @@
       <file leaf-file-name="ConexiuneServerPosturi.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/src/main/java/ConexiuneServerPosturi.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-194">
-              <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="546">
+              <caret line="33" column="13" lean-forward="true" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConexiuneServerAdauga.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Client/src/main/java/ConexiuneServerAdauga.java">
+      <file leaf-file-name="ConexiuneServerAngajati.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/src/main/java/ConexiuneServerAngajati.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="52" column="41" lean-forward="true" selection-start-line="52" selection-start-column="41" selection-end-line="52" selection-end-column="41" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="441">
+              <caret line="28" column="27" lean-forward="true" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Post.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Post.java">
+      <file leaf-file-name="CelulaAngajat.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/src/main/java/CelulaAngajat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="8" column="23" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-              <folding>
-                <element signature="e#603#604#0" expanded="true" />
-                <element signature="e#634#635#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="84">
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -206,24 +153,34 @@
       <file leaf-file-name="ConexiuneClient.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server/src/main/java/ConexiuneClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="57" column="35" lean-forward="true" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
+            <state relative-caret-position="1680">
+              <caret line="140" column="9" lean-forward="true" selection-start-line="140" selection-start-column="9" selection-end-line="140" selection-end-column="9" />
               <folding>
-                <marker date="1496404432073" expanded="true" signature="1348:1386" ph="SELECT nume angajat" />
-                <marker date="1496404432073" expanded="true" signature="1955:1999" ph="SELECT nume_... post" />
-                <marker date="1496404432073" expanded="true" signature="1955:2000" ph="SELECT nume_... post" />
-                <marker date="1496404432073" expanded="true" signature="2750:2843" ph="SELECT * FRO... zi_de_lucru" />
-                <marker date="1496404432073" expanded="true" signature="2750:2902" ph="SELECT z.dat... zi_de_lucru" />
-                <marker date="1496404432073" expanded="true" signature="2750:2994" ph="SELECT z.dat... zi_de_lucru" />
-                <marker date="1496404432073" expanded="true" signature="2750:3086" ph="SELECT z.dat... zi_de_lucru" />
-                <marker date="1496404432073" expanded="true" signature="2750:3218" ph="SELECT z.dat... zi_de_lucru" />
-                <marker date="1496404432073" expanded="true" signature="2750:3250" ph="SELECT z.dat... zi_de_lucru" />
-                <marker date="1496404432073" expanded="true" signature="2750:3252" ph="SELECT z.dat... zi_de_lucru" />
-                <marker date="1496404432073" expanded="true" signature="5076:5118" ph="INSERT IGNOR... angajat" />
-                <marker date="1496404432073" expanded="true" signature="5076:5119" ph="INSERT IGNOR... angajat" />
-                <marker date="1496404432073" expanded="true" signature="5466:5510" ph="INSERT IGNOR... post" />
-                <marker date="1496404432073" expanded="true" signature="5466:5511" ph="INSERT IGNOR... post" />
+                <marker date="1496771517967" expanded="true" signature="1105:1143" ph="SELECT nume angajat" />
+                <marker date="1496771517967" expanded="true" signature="1719:1763" ph="SELECT nume_... post" />
+                <marker date="1496771517967" expanded="true" signature="1719:1764" ph="SELECT nume_... post" />
+                <marker date="1496771517967" expanded="true" signature="2521:2614" ph="SELECT * FRO... zi_de_lucru" />
+                <marker date="1496771517967" expanded="true" signature="2521:2673" ph="SELECT z.dat... zi_de_lucru" />
+                <marker date="1496771517967" expanded="true" signature="2521:2765" ph="SELECT z.dat... zi_de_lucru" />
+                <marker date="1496771517967" expanded="true" signature="2521:2857" ph="SELECT z.dat... zi_de_lucru" />
+                <marker date="1496771517967" expanded="true" signature="2521:2989" ph="SELECT z.dat... zi_de_lucru" />
+                <marker date="1496771517967" expanded="true" signature="2521:3021" ph="SELECT z.dat... zi_de_lucru" />
+                <marker date="1496771517967" expanded="true" signature="2521:3023" ph="SELECT z.dat... zi_de_lucru" />
+                <marker date="1496771517967" expanded="true" signature="4854:4896" ph="INSERT IGNOR... angajat" />
+                <marker date="1496771517967" expanded="true" signature="4854:4897" ph="INSERT IGNOR... angajat" />
+                <marker date="1496771517967" expanded="true" signature="5251:5295" ph="INSERT IGNOR... post" />
+                <marker date="1496771517967" expanded="true" signature="5251:5296" ph="INSERT IGNOR... post" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConexiuneServerAdauga.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/src/main/java/ConexiuneServerAdauga.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="33" column="35" lean-forward="false" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -283,19 +240,23 @@
         <option value="$PROJECT_DIR$/Shared/src/main/java/Port.java" />
         <option value="$PROJECT_DIR$/Server/src/main/java/ServiciuServer.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6368358d-eada-4779-8b1f-974932381dd6/console.sql" />
-        <option value="$PROJECT_DIR$/Shared/src/main/java/Post.java" />
         <option value="$PROJECT_DIR$/Client/src/main/resources/stilizare.css" />
         <option value="$PROJECT_DIR$/Shared/src/main/java/AdresaPort.java" />
         <option value="$PROJECT_DIR$/Shared/src/main/java/Cerere.java" />
-        <option value="$PROJECT_DIR$/Client/src/main/java/ConexiuneServerAngajati.java" />
-        <option value="$PROJECT_DIR$/Shared/src/main/java/Angajat.java" />
-        <option value="$PROJECT_DIR$/Shared/src/main/java/Zi.java" />
-        <option value="$PROJECT_DIR$/Server/src/main/java/ConexiuneClient.java" />
-        <option value="$PROJECT_DIR$/Client/src/main/java/ManagerTuraMain.java" />
-        <option value="$PROJECT_DIR$/Client/src/main/java/ConexiuneServerPosturi.java" />
-        <option value="$PROJECT_DIR$/Client/src/main/java/ConexiuneServerLuna.java" />
-        <option value="$PROJECT_DIR$/Server/src/main/java/ServerMain.java" />
         <option value="$PROJECT_DIR$/Client/src/main/java/ConexiuneServerAdauga.java" />
+        <option value="$PROJECT_DIR$/Server/src/main/java/ServerMain.java" />
+        <option value="$PROJECT_DIR$/Server/src/main/java/ConexiuneClient.java" />
+        <option value="$PROJECT_DIR$/Client/src/main/java/CelulaAngajat.java" />
+        <option value="$PROJECT_DIR$/Client/src/main/java/CelulaPost.java" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/Angajat.java" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/DataRoot.java" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/Post.java" />
+        <option value="$PROJECT_DIR$/Client/src/main/java/DragDetectedEvent.java" />
+        <option value="$PROJECT_DIR$/Client/src/main/java/ConexiuneServerLuna.java" />
+        <option value="$PROJECT_DIR$/Client/src/main/java/ConexiuneServerAngajati.java" />
+        <option value="$PROJECT_DIR$/Client/src/main/java/ConexiuneServerPosturi.java" />
+        <option value="$PROJECT_DIR$/Client/src/main/java/ManagerTuraMain.java" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/Zi.java" />
       </list>
     </option>
   </component>
@@ -327,20 +288,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManagerTura" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -457,6 +404,20 @@
       </pane>
       <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ManagerTura" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -951,11 +912,14 @@
       <workItem from="1496382091891" duration="13338000" />
       <workItem from="1496395872036" duration="27000" />
       <workItem from="1496400182282" duration="5535000" />
+      <workItem from="1496682125338" duration="1384000" />
+      <workItem from="1496686258185" duration="17000" />
+      <workItem from="1496767848951" duration="13603000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96626000" />
+    <option name="totallyTimeSpent" value="111630000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -967,7 +931,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1098" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -979,20 +944,19 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2647374" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2636656" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23039742" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24006444" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16272825" sideWeight="0.49473685" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3601286" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37942123" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1000,6 +964,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16272825" sideWeight="0.50526315" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1010,15 +975,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/ConexiuneClient.java</url>
-          <line>34</line>
-          <properties />
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="21" />
+      <option name="time" value="25" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1027,14 +984,12 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Client/src/main/resources/manager_tura.fxml" />
     <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Angajat.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="7" column="38" lean-forward="false" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
-          <folding>
-            <element signature="e#565#566#0" expanded="false" />
-            <element signature="e#592#593#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1043,72 +998,30 @@
         <state relative-caret-position="42">
           <caret line="2" column="45" lean-forward="false" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1349#1350#0" expanded="true" />
+            <element signature="e#1390#1391#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ManagerTuraController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Post.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <element signature="e#603#604#0" expanded="true" />
-            <element signature="e#634#635#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ManagerTuraController.java" />
     <entry file="file://$PROJECT_DIR$/Client/src/main/java/ManagerTuraMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1408#1409#0" expanded="true" />
-            <element signature="e#1446#1447#0" expanded="true" />
-            <element signature="e#10909#10910#0" expanded="true" />
-            <element signature="e#10946#10947#0" expanded="true" />
-            <marker date="1496405451297" expanded="false" signature="4200:4370" ph="updateItem(item, empty) → {" />
-            <marker date="1496405451297" expanded="false" signature="4495:4518" ph="}" />
+            <element signature="class#AdaugaEventHandler#0;class#ManagerTuraMain#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/main/resources/stilizare.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Tura.java" />
-    <entry file="file://$PROJECT_DIR$/Client/src/main/resources/manager_tura.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/main/resources/manager_tura.fxml" />
     <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Angajat.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="7" column="38" lean-forward="false" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
-          <folding>
-            <element signature="e#565#566#0" expanded="false" />
-            <element signature="e#592#593#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1117,85 +1030,20 @@
         <state relative-caret-position="42">
           <caret line="2" column="45" lean-forward="false" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1349#1350#0" expanded="true" />
+            <element signature="e#1390#1391#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ManagerTuraController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ManagerTuraMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1408#1409#0" expanded="true" />
-            <element signature="e#1446#1447#0" expanded="true" />
-            <element signature="e#10909#10910#0" expanded="true" />
-            <element signature="e#10946#10947#0" expanded="true" />
-            <marker date="1496405451297" expanded="false" signature="4200:4370" ph="updateItem(item, empty) → {" />
-            <marker date="1496405451297" expanded="false" signature="4495:4518" ph="}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/main/resources/manager_tura.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Angajat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="38" lean-forward="false" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
-          <folding>
-            <element signature="e#565#566#0" expanded="false" />
-            <element signature="e#592#593#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ConexiuneServerAngajati.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="45" lean-forward="false" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ManagerTuraController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ManagerTuraController.java" />
     <entry file="file://$PROJECT_DIR$/Client/src/main/java/ManagerTuraMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1408#1409#0" expanded="true" />
-            <element signature="e#1446#1447#0" expanded="true" />
-            <element signature="e#10909#10910#0" expanded="true" />
-            <element signature="e#10946#10947#0" expanded="true" />
-            <marker date="1496405451297" expanded="false" signature="4200:4370" ph="updateItem(item, empty) → {" />
-            <marker date="1496405451297" expanded="false" signature="4495:4518" ph="}" />
+            <element signature="class#AdaugaEventHandler#0;class#ManagerTuraMain#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1204,10 +1052,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="7" column="38" lean-forward="false" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
-          <folding>
-            <element signature="e#565#566#0" expanded="false" />
-            <element signature="e#592#593#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1216,7 +1061,8 @@
         <state relative-caret-position="42">
           <caret line="2" column="45" lean-forward="true" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1349#1350#0" expanded="true" />
+            <element signature="e#1390#1391#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1228,13 +1074,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ManagerTuraController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ManagerTuraController.java" />
     <entry file="file://$PROJECT_DIR$/Server/src/main/java/ServerMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -1263,17 +1103,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/main/resources/manager_tura.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/main/resources/manager_tura.fxml" />
     <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Tura.java" />
     <entry file="dbDummy://dbtable:/8495384a/6c325ee0-668b-4983-8627-93cc96d28a24/managertura.angajat" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6c325ee0-668b-4983-8627-93cc96d28a24/console.sql">
@@ -1297,13 +1127,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ManagerTuraController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ManagerTuraController.java" />
     <entry file="file://$PROJECT_DIR$/Server/src/main/java/ServiciuServer.java" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6368358d-eada-4779-8b1f-974932381dd6/console.sql">
       <provider selected="true" editor-type-id="text-editor">
@@ -1319,14 +1143,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/AdresaPort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/javafx-src.zip!/javafx/event/EventHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="441">
@@ -1338,20 +1154,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="407">
           <caret line="660" column="0" lean-forward="false" selection-start-line="660" selection-start-column="0" selection-end-line="660" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Cerere.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding>
-            <element signature="e#183#184#0" expanded="true" />
-            <element signature="e#208#209#0" expanded="true" />
-            <element signature="e#237#238#0" expanded="true" />
-            <element signature="e#265#266#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1359,122 +1161,114 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="391" column="0" lean-forward="false" selection-start-line="391" selection-start-column="0" selection-end-line="391" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/AdresaPort.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Angajat.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/javafx-src.zip!/javafx/event/Event.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="32" column="34" lean-forward="false" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
-          <folding>
-            <element signature="e#827#828#0" expanded="true" />
-            <element signature="e#858#859#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Zi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="196" column="71" lean-forward="true" selection-start-line="196" selection-start-column="71" selection-end-line="196" selection-end-column="71" />
+        <state relative-caret-position="399">
+          <caret line="198" column="0" lean-forward="false" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Post.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/javafx-src.zip!/javafx/scene/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="8" column="23" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-          <folding>
-            <element signature="e#603#604#0" expanded="true" />
-            <element signature="e#634#635#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="189">
+          <caret line="8413" column="0" lean-forward="false" selection-start-line="8413" selection-start-column="0" selection-end-line="8413" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/src/main/java/ConexiuneClient.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/javafx-src.zip!/javafx/scene/control/Button.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="57" column="35" lean-forward="true" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
-          <folding>
-            <marker date="1496404432073" expanded="true" signature="1348:1386" ph="SELECT nume angajat" />
-            <marker date="1496404432073" expanded="true" signature="1955:1999" ph="SELECT nume_... post" />
-            <marker date="1496404432073" expanded="true" signature="1955:2000" ph="SELECT nume_... post" />
-            <marker date="1496404432073" expanded="true" signature="2750:2843" ph="SELECT * FRO... zi_de_lucru" />
-            <marker date="1496404432073" expanded="true" signature="2750:2902" ph="SELECT z.dat... zi_de_lucru" />
-            <marker date="1496404432073" expanded="true" signature="2750:2994" ph="SELECT z.dat... zi_de_lucru" />
-            <marker date="1496404432073" expanded="true" signature="2750:3086" ph="SELECT z.dat... zi_de_lucru" />
-            <marker date="1496404432073" expanded="true" signature="2750:3218" ph="SELECT z.dat... zi_de_lucru" />
-            <marker date="1496404432073" expanded="true" signature="2750:3250" ph="SELECT z.dat... zi_de_lucru" />
-            <marker date="1496404432073" expanded="true" signature="2750:3252" ph="SELECT z.dat... zi_de_lucru" />
-            <marker date="1496404432073" expanded="true" signature="5076:5118" ph="INSERT IGNOR... angajat" />
-            <marker date="1496404432073" expanded="true" signature="5076:5119" ph="INSERT IGNOR... angajat" />
-            <marker date="1496404432073" expanded="true" signature="5466:5510" ph="INSERT IGNOR... post" />
-            <marker date="1496404432073" expanded="true" signature="5466:5511" ph="INSERT IGNOR... post" />
-          </folding>
+        <state relative-caret-position="189">
+          <caret line="186" column="0" lean-forward="false" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/src/main/java/DialogInput.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="819">
-          <caret line="39" column="57" lean-forward="true" selection-start-line="39" selection-start-column="57" selection-end-line="39" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ManagerTuraMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="275" column="31" lean-forward="false" selection-start-line="275" selection-start-column="31" selection-end-line="275" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1408#1409#0" expanded="true" />
-            <element signature="e#1446#1447#0" expanded="true" />
-            <element signature="e#10909#10910#0" expanded="true" />
-            <element signature="e#10946#10947#0" expanded="true" />
-            <marker date="1496405451297" expanded="false" signature="4200:4370" ph="updateItem(item, empty) → {" />
-            <marker date="1496405451297" expanded="false" signature="4495:4518" ph="}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ConexiuneServerLuna.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="39" column="33" lean-forward="false" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+        <state relative-caret-position="-67">
+          <caret line="29" column="52" lean-forward="true" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/src/main/java/ServerMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="122" column="37" lean-forward="true" selection-start-line="122" selection-start-column="37" selection-end-line="122" selection-end-column="37" />
+        <state relative-caret-position="1491">
+          <caret line="87" column="13" lean-forward="true" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/DataRoot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
           <folding>
-            <marker date="1496405706502" expanded="false" signature="871:969" ph="() → {" />
-            <marker date="1496405706502" expanded="false" signature="2212:2231" ph="}" />
+            <element signature="e#178#179#0" expanded="true" />
+            <element signature="e#209#210#0" expanded="true" />
+            <element signature="e#244#245#0" expanded="true" />
+            <element signature="e#275#276#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ConexiuneServerAngajati.java">
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Post.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="147">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ConexiuneServerPosturi.java">
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Cerere.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-194">
-          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        <state relative-caret-position="42">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Angajat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-73">
+          <caret line="4" column="49" lean-forward="false" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/main/java/CelulaPost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/main/java/CelulaAngajat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/main/java/DragDetectedEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1483,10 +1277,91 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/src/main/java/ConexiuneServerAdauga.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="52" column="41" lean-forward="true" selection-start-line="52" selection-start-column="41" selection-end-line="52" selection-end-column="41" />
+        <state relative-caret-position="504">
+          <caret line="33" column="35" lean-forward="false" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ConexiuneServerLuna.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="41" column="32" lean-forward="true" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ConexiuneServerAngajati.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="28" column="27" lean-forward="true" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ConexiuneServerPosturi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="33" column="13" lean-forward="true" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/src/main/java/ConexiuneClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1680">
+          <caret line="140" column="9" lean-forward="true" selection-start-line="140" selection-start-column="9" selection-end-line="140" selection-end-column="9" />
+          <folding>
+            <marker date="1496771517967" expanded="true" signature="1105:1143" ph="SELECT nume angajat" />
+            <marker date="1496771517967" expanded="true" signature="1719:1763" ph="SELECT nume_... post" />
+            <marker date="1496771517967" expanded="true" signature="1719:1764" ph="SELECT nume_... post" />
+            <marker date="1496771517967" expanded="true" signature="2521:2614" ph="SELECT * FRO... zi_de_lucru" />
+            <marker date="1496771517967" expanded="true" signature="2521:2673" ph="SELECT z.dat... zi_de_lucru" />
+            <marker date="1496771517967" expanded="true" signature="2521:2765" ph="SELECT z.dat... zi_de_lucru" />
+            <marker date="1496771517967" expanded="true" signature="2521:2857" ph="SELECT z.dat... zi_de_lucru" />
+            <marker date="1496771517967" expanded="true" signature="2521:2989" ph="SELECT z.dat... zi_de_lucru" />
+            <marker date="1496771517967" expanded="true" signature="2521:3021" ph="SELECT z.dat... zi_de_lucru" />
+            <marker date="1496771517967" expanded="true" signature="2521:3023" ph="SELECT z.dat... zi_de_lucru" />
+            <marker date="1496771517967" expanded="true" signature="4854:4896" ph="INSERT IGNOR... angajat" />
+            <marker date="1496771517967" expanded="true" signature="4854:4897" ph="INSERT IGNOR... angajat" />
+            <marker date="1496771517967" expanded="true" signature="5251:5295" ph="INSERT IGNOR... post" />
+            <marker date="1496771517967" expanded="true" signature="5251:5296" ph="INSERT IGNOR... post" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/main/java/ManagerTuraMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="231" column="64" lean-forward="false" selection-start-line="231" selection-start-column="64" selection-end-line="231" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="class#AdaugaEventHandler#0;class#ManagerTuraMain#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Zi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3444">
+          <caret line="226" column="24" lean-forward="true" selection-start-line="226" selection-start-column="24" selection-end-line="226" selection-end-column="24" />
+          <folding>
+            <element signature="e#9306#9307#0" expanded="true" />
+            <element signature="e#9344#9345#0" expanded="true" />
+            <element signature="e#9399#9400#0" expanded="true" />
+            <element signature="e#9431#9432#0" expanded="true" />
+            <element signature="e#9463#9464#0" expanded="true" />
+            <element signature="e#9497#9498#0" expanded="true" />
+            <element signature="e#9548#9549#0" expanded="true" />
+            <element signature="e#9576#9577#0" expanded="true" />
+            <element signature="e#9608#9609#0" expanded="true" />
+            <element signature="e#9642#9643#0" expanded="true" />
+            <element signature="e#9693#9694#0" expanded="true" />
+            <element signature="e#9721#9722#0" expanded="true" />
+            <element signature="e#9753#9754#0" expanded="true" />
+            <element signature="e#9787#9788#0" expanded="true" />
+            <element signature="e#9838#9839#0" expanded="true" />
+            <element signature="e#9866#9867#0" expanded="true" />
           </folding>
         </state>
       </provider>

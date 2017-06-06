@@ -11,11 +11,11 @@ import java.util.ArrayList;
 public class ConexiuneClient extends Thread {
 
     private Socket conexiune;
-    private Cerere cerere;
+    private int cerere;
     private ObjectInputStream input;
     private ObjectOutputStream output;
 
-    public ConexiuneClient(Socket conexiune, Cerere cerere, ObjectInputStream input, ObjectOutputStream output){
+    public ConexiuneClient(Socket conexiune, int cerere, ObjectInputStream input, ObjectOutputStream output){
         this.conexiune = conexiune;
         this.cerere = cerere;
         this.input = input;
@@ -25,13 +25,11 @@ public class ConexiuneClient extends Thread {
     @Override
     public void run() {
         System.out.println("Test");
-        try(//ObjectInputStream input = new ObjectInputStream(conexiune.getInputStream());
-            //ObjectOutputStream output = new ObjectOutputStream(conexiune.getOutputStream());
-            Connection conexiuneDB = DriverManager.getConnection(ServerMain.DB_URL, ServerMain.DB_USER, ServerMain.DB_PASSWORD)) {
+        try(Connection conexiuneDB = DriverManager.getConnection(ServerMain.DB_URL, ServerMain.DB_USER, ServerMain.DB_PASSWORD)) {
+
             System.out.println("Conexiune");
-            //Cerere cerere = (Cerere) input.readObject();
             switch(cerere) {
-                case CERERE_ANGAJATI: {
+                case Cerere.CERERE_ANGAJATI: {
                     System.out.println("Conexiune pentru angajati");
                     PreparedStatement ps = conexiuneDB.prepareStatement("SELECT nume FROM angajat ORDER BY nume;");
                     ResultSet rs = ps.executeQuery();
@@ -45,7 +43,7 @@ public class ConexiuneClient extends Thread {
                     output.flush();
                     break;
                 }
-                case CERERE_POSTURI: {
+                case Cerere.CERERE_POSTURI: {
                     PreparedStatement ps = conexiuneDB.prepareStatement("SELECT nume_post FROM post ORDER BY nume_post;");
                     ResultSet rs = ps.executeQuery();
                     ArrayList<Post> rezultat = new ArrayList<>();
@@ -58,7 +56,7 @@ public class ConexiuneClient extends Thread {
                     output.flush();
                     break;
                 }
-                case CERERE_LUNA: {
+                case Cerere.CERERE_LUNA: {
                     Date dataStart = (Date) input.readObject();
                     Date dataEnd = (Date) input.readObject();
                     Post post = (Post) input.readObject();
@@ -105,7 +103,7 @@ public class ConexiuneClient extends Thread {
                     output.flush();
                     break;
                 }
-                case ANGAJAT_NOU: {
+                case Cerere.ANGAJAT_NOU: {
                     Angajat angajat = (Angajat) input.readObject();
                     PreparedStatement ps = conexiuneDB.prepareStatement("INSERT IGNORE INTO angajat (nume) VALUE (?);");
                     ps.setString(1, angajat.getNumeRoot());
@@ -113,10 +111,10 @@ public class ConexiuneClient extends Thread {
                     ps.close();
                     break;
                 }
-                case POST_NOU: {
+                case Cerere.POST_NOU: {
                     Post post = (Post) input.readObject();
                     PreparedStatement ps = conexiuneDB.prepareStatement("INSERT IGNORE INTO post (nume_post) VALUE (?);");
-                    ps.setString(1, post.toString());
+                    ps.setString(1, post.getNumeRoot());
                     ps.executeUpdate();
                     ps.close();
                     break;

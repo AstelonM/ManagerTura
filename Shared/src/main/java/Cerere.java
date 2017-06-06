@@ -1,14 +1,12 @@
 package main.java;
 
-public enum Cerere {
-    CERERE_ANGAJATI(0), CERERE_POSTURI(1), CERERE_LUNA(2), ANGAJAT_NOU(3), POST_NOU(4), INCHIDE(5);
+public class Cerere {
 
-    private int value;
-    Cerere(int v) {
-        value = v;
-    }
+    public static final int CERERE_ANGAJATI = 10;
+    public static final int CERERE_POSTURI = 20;
+    public static final int CERERE_LUNA = 30;
+    public static final int ANGAJAT_NOU = 110;
+    public static final int POST_NOU = 120;
+    public static final int INCHIDE = -1;
 
-    public int getValue() {
-        return value;
-    }
 }

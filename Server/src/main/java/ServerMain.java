@@ -25,39 +25,6 @@ public class ServerMain extends Application {
 
         private ServerSocket server;
 
-        /*@Override
-        protected Task createTask() {
-            return new Task() {
-
-                @Override
-                protected Object call() throws Exception {
-                    try {
-                        server = new ServerSocket(AdresaPort.port);
-                        while (ruleaza) {
-                            System.out.println("Server accepting");
-                            Socket conexiune = server.accept();
-                            ObjectInputStream input = new ObjectInputStream(conexiune.getInputStream());
-                            ObjectOutputStream output = new ObjectOutputStream(conexiune.getOutputStream());
-                            int cerereInt =  input.readInt();
-                            Cerere cerere = (Cerere.values())[cerereInt];
-                            if(cerere == Cerere.INCHIDE)
-                            {
-                                input.close();
-                                conexiune.close();
-                                break;
-                            }
-                            else
-                                new ConexiuneClient(conexiune, cerere, input, output).start();
-                        }
-                    }
-                    finally {
-                        server.close();
-                    }
-                    System.out.println("Server closed");
-                    return null;
-                }
-            };
-        }*/
         @Override
         public void run() {
             try {
@@ -69,8 +36,7 @@ public class ServerMain extends Application {
                     ObjectInputStream input = new ObjectInputStream(conexiune.getInputStream());
                     ObjectOutputStream output = new ObjectOutputStream(conexiune.getOutputStream());
                     System.out.println("Citire");
-                    int cerereInt =  input.readInt();
-                    Cerere cerere = (Cerere.values())[cerereInt];
+                    int cerere =  input.readInt();
                     System.out.println(cerere);
                     if(cerere == Cerere.INCHIDE)
                     {
@@ -111,31 +77,14 @@ public class ServerMain extends Application {
         Scene scene = new Scene(root, 300, 275);
         primaryStage.setOnCloseRequest(event -> {
             ruleaza = false;
-            Socket socket = null;
-            ObjectOutputStream output = null;
-            ObjectInputStream input = null;
-            try {
-                socket = new Socket(AdresaPort.adresa, AdresaPort.port);
-                output = new ObjectOutputStream(socket.getOutputStream());
-                input = new ObjectInputStream(socket.getInputStream());
-                output.writeInt(Cerere.INCHIDE.getValue());
+            try(Socket socket = new Socket(AdresaPort.adresa, AdresaPort.port);
+                ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
+                ObjectInputStream input = new ObjectInputStream(socket.getInputStream())) {
+
+                output.writeInt(Cerere.INCHIDE);
                 output.flush();
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-            finally {
-                try {
-                    if(socket != null) {
-                        socket.close();
-                    }
-                    if(output != null) {
-                        output.close();
-                    }
-                    if(input != null)
-                        input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         });
         primaryStage.setTitle("Manager de Tura (Server)");

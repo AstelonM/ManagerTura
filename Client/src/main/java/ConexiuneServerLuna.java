@@ -30,29 +30,21 @@ public class ConexiuneServerLuna extends Service<ArrayList<Zi>> {
         @Override
         protected ArrayList<Zi> call() throws Exception {
             ArrayList<Zi> lista = new ArrayList<>();
-            Socket socket = null;
-            ObjectOutputStream output = null;
-            ObjectInputStream input = null;
-            try {
-                socket = new Socket(AdresaPort.adresa, AdresaPort.port);
-                output = new ObjectOutputStream(socket.getOutputStream());
-                input = new ObjectInputStream(socket.getInputStream());
-                output.writeInt(Cerere.CERERE_LUNA.getValue());
+            try(Socket socket = new Socket(AdresaPort.adresa, AdresaPort.port);
+                ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
+                ObjectInputStream input = new ObjectInputStream(socket.getInputStream())) {
+
+                output.writeInt(Cerere.CERERE_LUNA);
                 output.writeObject(start);
                 output.writeObject(end);
                 output.writeObject(post);
                 output.flush();
                 lista = (ArrayList<Zi>) input.readObject();
+                lista.forEach(Zi::updateazaProprietatile);
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-            finally {
-                if(output != null)
-                    output.close();
-                if(input != null)
-                    input.close();
-                if(socket != null)
-                    socket.close();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
             return lista;
         }
@@ -60,6 +52,6 @@ public class ConexiuneServerLuna extends Service<ArrayList<Zi>> {
 
     @Override
     protected Task<ArrayList<Zi>> createTask() {
-        return null;
+        return new TaskZile();
     }
 }

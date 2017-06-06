@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
@@ -17,23 +18,27 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
 import java.time.YearMonth;
-import java.time.format.TextStyle;
-import java.util.ArrayList;
-import java.util.Locale;
 
 
 public class ManagerTuraMain extends Application {
 
-    //private ScrollPane center;
     private VBox center;
-    private TableView calendar;
     private Stage fereastraDialog;
+
+    private TableView calendar;
+    private TableColumn dataCol;
+    private TableColumn tura1Col;
+    private TableColumn tura2Col;
+    private TableColumn tura3Col;
 
     private ObservableList<Angajat> angajati = FXCollections.observableArrayList();
     private ObservableList<Post> posturi = FXCollections.observableArrayList();
+    private ObservableList<Zi> programCurent = FXCollections.observableArrayList();
     private ListView<Angajat> listaAngajati = new ListView<>();
     private ListView<Post> listaPosturi = new ListView<>();
+    Post postulCurent;
 
     private final String modAngajat = "Angajat";
     private final String modPost = "Post";
@@ -68,18 +73,22 @@ public class ManagerTuraMain extends Application {
         VBox right = new VBox(8);
         center = new VBox();
         calendar = new TableView();
-        final ConexiuneServerAngajati conA = new ConexiuneServerAngajati(this);
-        /*conA.setOnSucceeded(event -> {
-            System.out.println("Event succeeded");
+        ConexiuneServerAngajati conA = new ConexiuneServerAngajati();
+        conA.setOnSucceeded(event -> {
+            System.out.println("Angajati de la baza de date!");
             angajati.addAll(conA.getValue());
             listaAngajati.setItems(angajati);
-            final ConexiuneServerPosturi conP = new ConexiuneServerPosturi();
-            conA.setOnSucceeded(event2 -> posturi.addAll(conP.getValue()));
+            ConexiuneServerPosturi conP = new ConexiuneServerPosturi();
+            conP.setOnSucceeded(event1 -> {
+                System.out.println("Posturi de la baza de date!");
+                posturi.addAll(conP.getValue());
+                listaPosturi.setItems(posturi);
+            });
             conP.start();
-        });*/
+        });
         conA.start();
-        final ConexiuneServerPosturi conP = new ConexiuneServerPosturi(this, conA);
-        conP.start();
+
+
         //Initializare top
         MenuBar meniu = new MenuBar();
         Menu meniuFile = new Menu("File");
@@ -101,79 +110,42 @@ public class ManagerTuraMain extends Application {
         AnchorPane.setRightAnchor(meniu, 0.0);
         top.getChildren().addAll(meniu);
 
+
         //Initializare left
         listaAngajati.setItems(angajati);
         listaAngajati.setEditable(false);
-        /*listaAngajati.setCellFactory(new Callback<ListView<Angajat>, ListCell<Angajat>>() {
-            @Override
-                public ListCell<Angajat> call(ListView<Angajat> param) {
-                ListCell<Angajat> celula = new ListCell<Angajat>()
-                {
-                    @Override
-                    protected void updateItem( Angajat item, boolean empty )
-                    {
-                        super.updateItem( item, empty );
-                        setText( item.getNume() );
-                    }
-                };
-                celula.setOnDragDetected(event -> {
-                    Dragboard db = celula.startDragAndDrop( TransferMode.COPY );
-                    ClipboardContent content = new ClipboardContent();
-                    content.putString( celula.getItem().getNume() );
-                    db.setContent( content );
-                    event.consume();
-                });
-                return celula;
-            }
-        });*/
+        listaAngajati.setCellFactory(param -> {
+            ListCell<Angajat> celula = new CelulaAngajat();
+            celula.setOnDragDetected(new DragDetectedEvent());
+            return celula;
+        });
         HBox leftLabelBox = new HBox();
         leftLabelBox.setAlignment(Pos.CENTER_LEFT);
         Label leftLabel = new Label("Angajati:");
         leftLabelBox.getChildren().add(leftLabel);
-        //left.setAlignment(Pos.TOP_CENTER);
-        //left.setPadding(new Insets(10, 10, 10, 10));
         left.getChildren().addAll(leftLabelBox, listaAngajati);
 
 
         //Initializare right
         listaPosturi.setItems(posturi);
         listaPosturi.setEditable(false);
-        /*listaPosturi.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
-            @Override
-            public ListCell<String> call(ListView<String> param) {
-                ListCell<String> celula = new ListCell<String>()
-                {
-                    @Override
-                    protected void updateItem( String item, boolean empty )
-                    {
-                        super.updateItem( item, empty );
-                        setText( item );
-                    }
-                };
-                celula.setOnDragDetected(event -> {
-                    Dragboard db = celula.startDragAndDrop( TransferMode.COPY );
-                    ClipboardContent content = new ClipboardContent();
-                    content.putString( celula.getItem() );
-                    db.setContent( content );
-                    event.consume();
-                });
-                return celula;
-            }
-        });*/
+        listaPosturi.setCellFactory(param -> {
+            ListCell<Post> celula = new CelulaPost();
+            celula.setOnDragDetected(new DragDetectedEvent());
+            return celula;
+        });
         HBox rightLabelBox = new HBox();
         rightLabelBox.setAlignment(Pos.CENTER_LEFT);
         Label rightLabel = new Label("Posturi:");
         rightLabelBox.getChildren().add(rightLabel);
-        //right.setAlignment(Pos.TOP_CENTER);
-        //right.setSpacing(8);
-        //right.setPadding(new Insets(10, 10, 10, 10));
         right.getChildren().addAll(rightLabelBox, listaPosturi);
 
         //Initializare center
-        TableColumn dataCol = new TableColumn("Data");
-        TableColumn tura1Col = new TableColumn("Tura de Noapte");
-        TableColumn tura2Col = new TableColumn("Tura de Zi");
-        TableColumn tura3Col = new TableColumn("Tura de Seara");
+        dataCol = new TableColumn("Data");
+        tura1Col = new TableColumn("Tura de Noapte");
+        tura2Col = new TableColumn("Tura de Zi");
+        tura3Col = new TableColumn("Tura de Seara");
+        creareCalendar();
         calendar.getColumns().addAll(dataCol, tura1Col, tura2Col, tura3Col);
         calendar.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         HBox centerLabelBox = new HBox();
@@ -200,7 +172,6 @@ public class ManagerTuraMain extends Application {
             event.setDropCompleted(success);
             event.consume();
         });
-        //center.setAlignment(Pos.TOP_CENTER);
         center.getChildren().addAll(centerLabelBox, calendar);
 
         //Totul vine impreuna aici
@@ -209,6 +180,8 @@ public class ManagerTuraMain extends Application {
         root.setRight(right);
         root.setCenter(center);
         //root.setBottom(bottom);
+
+
 
         Scene scene = new Scene(root, 300, 275);
         left.getStyleClass().addAll("vbox");
@@ -246,13 +219,19 @@ public class ManagerTuraMain extends Application {
     private void creareCalendar()
     {
         YearMonth azi = YearMonth.now();
-        int nrZile = azi.getMonthValue();
+        int nrZile = azi.lengthOfMonth();
         int an = azi.getYear();
-        String luna = (azi.getMonth().getDisplayName(TextStyle.FULL, new Locale("ro"))).toUpperCase();
-
+        int luna = azi.getMonthValue();
+        //String luna = (azi.getMonth().getDisplayName(TextStyle.FULL, new Locale("ro"))).toUpperCase();
+        for(int i = 1; i <= nrZile; i++) {
+            programCurent.add(new Zi(LocalDate.of(an, luna, i)));
+        }
+        dataCol.setCellValueFactory(new PropertyValueFactory<Zi, String>("dataZilei"));
+        tura1Col.setCellValueFactory(new PropertyValueFactory<Zi, String>("tura1"));
+        tura2Col.setCellValueFactory(new PropertyValueFactory<Zi, String>("tura2"));
+        tura3Col.setCellValueFactory(new PropertyValueFactory<Zi, String>("tura3"));
+        calendar.setItems(programCurent);
     }
-
-    private ManagerTuraMain getApplication() { return this; }
 
     public void rezultatDialog(String rezultat, String mod) {
         if(mod.equals(modAngajat)) {
@@ -262,29 +241,24 @@ public class ManagerTuraMain extends Application {
                     return;
             }
             angajati.add(a);
-            new ConexiuneServerAdauga(Cerere.ANGAJAT_NOU, a).start();
+            ConexiuneServerAdauga con = new ConexiuneServerAdauga(Cerere.ANGAJAT_NOU, a);
+            con.setOnSucceeded(event -> System.out.println("Serviciu finalizat cu succes"));
+            con.start();
         }
         else {
             Post a = new Post(rezultat);
             for (Post i : posturi) {
-                if (i.toString().equals(rezultat))
+                if (i.getNumeRoot().equals(rezultat))
                     return;
             }
             posturi.add(a);
-            new ConexiuneServerAdauga(Cerere.POST_NOU, a).start();
+            ConexiuneServerAdauga con = new ConexiuneServerAdauga(Cerere.POST_NOU, a);
+            con.setOnSucceeded(event -> System.out.println("Serviciu finalizat cu succes"));
+            con.start();
         }
         fereastraDialog = null;
     }
 
-    public void rezultatAngajat(ArrayList<Angajat> lista) {
-        angajati.addAll(lista);
-        System.out.println("Am terminat queryul pentru angajati");
-        for(Angajat a: angajati)
-            System.out.println(a.getNumeRoot());
-    }
-
-    public void rezultatPost(ArrayList<Post> lista) {
-        posturi.addAll(lista);
-    }
+    private ManagerTuraMain getApplication() { return this; }
 
 }

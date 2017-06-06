@@ -11,10 +11,10 @@ import java.net.Socket;
 
 public class ConexiuneServerAdauga extends Service {
 
-    private Cerere cerere;
+    private int cerere;
     private Object obiect;
 
-    public ConexiuneServerAdauga(Cerere cerere, Object obiect) {
+    public ConexiuneServerAdauga(int cerere, Object obiect) {
         this.cerere = cerere;
         this.obiect = obiect;
     }
@@ -25,41 +25,15 @@ public class ConexiuneServerAdauga extends Service {
 
             @Override
             protected Object call() throws Exception {
-                Socket socket = null;
-                ObjectOutputStream output = null;
-                ObjectInputStream input = null;
-                try {
-                    socket = new Socket(AdresaPort.adresa, AdresaPort.port);
-                    output = new ObjectOutputStream(socket.getOutputStream());
-                    input = new ObjectInputStream(socket.getInputStream());
-                    switch(cerere) {
-                        case ANGAJAT_NOU:
-                        {
-                            output.writeInt(cerere.getValue());
-                            output.writeObject((Angajat) obiect);
-                            break;
-                        }
-                        case POST_NOU:
-                        {
-                            output.writeInt(cerere.getValue());
-                            output.writeObject((Post) obiect);
-                            break;
-                        }
-                        default:
-                        {
-                            break;
-                        }
-                    }
+
+                try(Socket socket = new Socket(AdresaPort.adresa, AdresaPort.port);
+                    ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
+                    ObjectInputStream input = new ObjectInputStream(socket.getInputStream())) {
+                    output.writeInt(cerere);
+                    output.writeObject(obiect);
+                    output.flush();
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
-                finally {
-                    if(output != null)
-                        output.close();
-                    if(socket != null)
-                        socket.close();
-                    if(input != null)
-                        input.close();
                 }
                 return null;
             }

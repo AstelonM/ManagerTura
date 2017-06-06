@@ -5,7 +5,10 @@ import com.sun.istack.internal.Nullable;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.io.Serializable;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 public class Zi implements Serializable, ProprietateSerializabila {
 
@@ -185,6 +188,50 @@ public class Zi implements Serializable, ProprietateSerializabila {
         tura3 = new SimpleStringProperty(angajatTura3.getNumeRoot());
     }
 
+    public Zi(LocalDate data) {
+        this.data = data;
+        String dataFormat = String.valueOf(data.getDayOfMonth()) + " ";
+        dataZilei = new SimpleStringProperty(String.valueOf(data.getDayOfMonth()) + " " +
+                dayOfWeekToRoDate(data.getDayOfWeek()));
+        tura1 = new SimpleStringProperty("Adauga");
+        tura2 = new SimpleStringProperty("Adauga");
+        tura3 = new SimpleStringProperty("Adauga");
+    }
+
+    private String dayOfWeekToRoDate(DayOfWeek data) {
+        switch(data) {
+            case MONDAY:
+            {
+                return "Luni";
+            }
+            case TUESDAY:
+            {
+                return "Marti";
+            }
+            case WEDNESDAY:
+            {
+                return "Miercuri";
+            }
+            case THURSDAY:
+            {
+                return "Joi";
+            }
+            case FRIDAY:
+            {
+                return "Vineri";
+            }
+            case SATURDAY:
+            {
+                return "Sambata";
+            }
+            case SUNDAY:
+            {
+                return "Duminica";
+            }
+        }
+        return "Luni";
+    }
+
     private void updateazaIndividual(Angajat angajat, SimpleStringProperty tura) {
         if(angajat == null) {
             if(tura == null)
@@ -204,9 +251,42 @@ public class Zi implements Serializable, ProprietateSerializabila {
         if(data == null)
             dataZilei = new SimpleStringProperty("");
         else
-            dataZilei = new SimpleStringProperty(String.valueOf(data.getDayOfMonth()) + data.getDayOfWeek());
+            dataZilei = new SimpleStringProperty(String.valueOf(data.getDayOfMonth()) + " " +
+                    data.getDayOfWeek().getDisplayName(TextStyle.SHORT_STANDALONE, new Locale("ro")));
         updateazaIndividual(angajatTura1, tura1);
         updateazaIndividual(angajatTura2, tura2);
         updateazaIndividual(angajatTura3, tura3);
+    }
+
+    public String getDataZilei() {
+        return dataZilei.get();
+    }
+
+    public SimpleStringProperty dataZileiProperty() {
+        return dataZilei;
+    }
+
+    public String getTura1() {
+        return tura1.get();
+    }
+
+    public SimpleStringProperty tura1Property() {
+        return tura1;
+    }
+
+    public String getTura2() {
+        return tura2.get();
+    }
+
+    public SimpleStringProperty tura2Property() {
+        return tura2;
+    }
+
+    public String getTura3() {
+        return tura3.get();
+    }
+
+    public SimpleStringProperty tura3Property() {
+        return tura3;
     }
 }

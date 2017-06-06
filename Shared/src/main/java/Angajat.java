@@ -2,21 +2,13 @@ package main.java;
 
 import javafx.beans.property.SimpleStringProperty;
 
-import java.io.Serializable;
+public class Angajat extends DataRoot implements ProprietateSerializabila {
 
-public class Angajat implements Serializable, ProprietateSerializabila {
-
-    private final String numeRoot;
     private transient SimpleStringProperty nume;
 
     public Angajat(String nume) {
-
-        numeRoot = nume;
+        super(nume);
         this.nume = new SimpleStringProperty(numeRoot);
-    }
-
-    public String getNumeRoot() {
-        return numeRoot;
     }
 
     /*public String getNume() {
@@ -38,5 +30,20 @@ public class Angajat implements Serializable, ProprietateSerializabila {
     @Override
     public String toString() {
         return numeRoot;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Angajat angajat = (Angajat) o;
+
+        return numeRoot.equals(angajat.numeRoot);
+    }
+
+    @Override
+    public int hashCode() {
+        return numeRoot.hashCode();
     }
 }
