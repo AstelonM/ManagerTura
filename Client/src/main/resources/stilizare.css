@@ -33,3 +33,36 @@
     -fx-text-fill: darkred;
     -fx-font-family: "Arial Black";
 }
+#center-top
+{
+    -fx-alignment: center;
+    -fx-padding: 0px 8px 0px 8px;
+}
+#status-box
+{
+    -fx-alignment: bottom-left;
+}
+#post-box
+{
+    -fx-alignment: bottom-right;
+}
+#status
+{
+    -fx-font-size: 20px;
+}
+#post
+{
+    -fx-font-size: 20px;
+}
+.bold-text
+{
+    -fx-font-weight: bold;
+}
+.text-eroare
+{
+    -fx-text-fill: red;
+}
+.text-atentie
+{
+    -fx-text-fill: orange;
+}

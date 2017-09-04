@@ -1,0 +1,21 @@
+#vbox
+{
+    -fx-background-color: skyblue;
+    -fx-spacing: 8px;
+    -fx-padding: 8px;
+    -fx-alignment: top-center;
+}
+#label_server
+{
+    -fx-font-size: 24px;
+    -fx-text-fill: darkred;
+    -fx-font-family: "Arial Black";
+}
+.text-eroare
+{
+    -fx-text-fill: red;
+}
+.text-atentie
+{
+    -fx-text-fill: orange;
+}

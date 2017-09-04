@@ -1,11 +1,11 @@
-package main.java;
+package main.java.servicii;
 
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import main.java.AdresaPort;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
@@ -25,10 +25,8 @@ public class ConexiuneServerAdauga extends Service {
 
             @Override
             protected Object call() throws Exception {
-
-                try(Socket socket = new Socket(AdresaPort.adresa, AdresaPort.port);
-                    ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
-                    ObjectInputStream input = new ObjectInputStream(socket.getInputStream())) {
+                try (Socket socket = new Socket(AdresaPort.ADRESA, AdresaPort.PORT);
+                     ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream())) {
                     output.writeInt(cerere);
                     output.writeObject(obiect);
                     output.flush();

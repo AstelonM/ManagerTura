@@ -1,27 +1,18 @@
 package main.java;
 
-import javafx.beans.property.SimpleStringProperty;
+import java.io.Serializable;
 
-public class Post extends DataRoot implements ProprietateSerializabila {
+public class Post implements Serializable {
 
-    private transient SimpleStringProperty nume;
+    private String nume;
 
     public Post(String nume) {
-        super(nume);
-        this.nume = new SimpleStringProperty(numeRoot);
-    }
-
-    @Override
-    public void updateazaProprietatile() {
-        if(nume == null)
-            nume = new SimpleStringProperty(numeRoot);
-        else
-            nume.set(numeRoot);
+        this.nume = nume;
     }
 
     @Override
     public String toString() {
-        return numeRoot;
+        return nume;
     }
 
     @Override
@@ -31,11 +22,15 @@ public class Post extends DataRoot implements ProprietateSerializabila {
 
         Post post = (Post) o;
 
-        return numeRoot.equals(post.numeRoot);
+        return nume.equals(post.nume);
     }
 
     @Override
     public int hashCode() {
-        return numeRoot.hashCode();
+        return nume.hashCode();
+    }
+
+    public String getNume() {
+        return nume;
     }
 }

@@ -1,14 +1,15 @@
-package main.java;
+package main.java.celule;
 
 import javafx.scene.control.ListCell;
+import main.java.Post;
 
 public class CelulaPost extends ListCell<Post> {
+
     @Override
-    protected void updateItem( Post item, boolean empty )
-    {
+    protected void updateItem( Post item, boolean empty ) {
         super.updateItem( item, empty );
         if(item != null)
-            setText( item.getNumeRoot() );
+            setText( item.getNume() );
         else
             setText("");
     }
