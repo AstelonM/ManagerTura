@@ -1,5 +1,6 @@
 package main.java;
 
+import javafx.application.Platform;
 import main.java.Logger.EvenimentLogger;
 
 import java.io.IOException;
@@ -51,9 +52,10 @@ public class ConexiuneClient extends Thread {
                     ps.close();
                     output.writeObject(rezultat);
                     output.flush();
-                    logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
+                    Platform.runLater(() -> logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
                             conexiune.getInetAddress().toString() + " a executat cererea " +
-                            cerere + " (cere toti angajatii)", LocalDateTime.now()));
+                                    cerere + " (cere toti angajatii)", LocalDateTime.now())));
+
                     break;
                 }
 
@@ -71,9 +73,9 @@ public class ConexiuneClient extends Thread {
                     ps.close();
                     output.writeObject(rezultat);
                     output.flush();
-                    logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
+                    Platform.runLater(() -> logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
                             conexiune.getInetAddress().toString() + " a executat cererea " +
-                                    cerere + " (cere angajati) pentru postul " + post.getNume(), LocalDateTime.now()));
+                                    cerere + " (cere angajati) pentru postul " + post.getNume(), LocalDateTime.now())));
                     break;
                 }
 
@@ -88,9 +90,9 @@ public class ConexiuneClient extends Thread {
                     ps.close();
                     output.writeObject(rezultat);
                     output.flush();
-                    logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
+                    Platform.runLater(() -> logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
                             conexiune.getInetAddress().toString() + " a executat cererea " +
-                                    cerere + " (cere posturile)", LocalDateTime.now()));
+                                    cerere + " (cere posturile)", LocalDateTime.now())));
                     break;
                 }
 
@@ -98,6 +100,15 @@ public class ConexiuneClient extends Thread {
                     Date dataStart = (Date) input.readObject();
                     Date dataEnd = (Date) input.readObject();
                     Post post = (Post) input.readObject();
+                    if (post == null) {
+                        output.writeObject(new ArrayList<Zi>());
+                        output.flush();
+                        Platform.runLater(() -> logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
+                                conexiune.getInetAddress().toString() + " a executat cererea " +
+                                        cerere + " (cere luna) pentru luna " + dataStart.toLocalDate().getMonthValue(),
+                                LocalDateTime.now())));
+                        break;
+                    }
                     PreparedStatement ps = conexiuneDB.prepareStatement(
                             "SELECT z.data, a1.nume, a2.nume, a3.nume  " +
                             "FROM zi_de_lucru z LEFT JOIN angajat a1 ON z.id_angajat_tura1 = a1.id_angajat " +
@@ -140,10 +151,10 @@ public class ConexiuneClient extends Thread {
                     ps.close();
                     output.writeObject(rezultat);
                     output.flush();
-                    logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
+                    Platform.runLater(() -> logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
                             conexiune.getInetAddress().toString() + " a executat cererea " +
                                     cerere + " (cere luna) pentru luna " + dataStart.toLocalDate().getMonthValue(),
-                            LocalDateTime.now()));
+                            LocalDateTime.now())));
                     break;
                 }
 
@@ -165,10 +176,10 @@ public class ConexiuneClient extends Thread {
                     ps.setInt(2, idPost);
                     ps.executeUpdate();
                     ps.close();
-                    logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
+                    Platform.runLater(() -> logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
                             conexiune.getInetAddress().toString() + " a executat cererea " +
                                     cerere + " (adauga angajat) si a adaugat angajatul " +
-                            angajat.getNume() + " pe postul " + angajat.getPost().getNume(), LocalDateTime.now()));
+                            angajat.getNume() + " pe postul " + angajat.getPost().getNume(), LocalDateTime.now())));
                     break;
                 }
 
@@ -178,9 +189,9 @@ public class ConexiuneClient extends Thread {
                     ps.setString(1, post.getNume());
                     ps.executeUpdate();
                     ps.close();
-                    logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
+                    Platform.runLater(() -> logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
                             conexiune.getInetAddress().toString() + " a executat cererea " +
-                                    cerere + " (adauga post) si a adaugat postul " + post.getNume(), LocalDateTime.now()));
+                                    cerere + " (adauga post) si a adaugat postul " + post.getNume(), LocalDateTime.now())));
                     break;
                 }
 
@@ -348,9 +359,9 @@ public class ConexiuneClient extends Thread {
                         }
                         output.writeBoolean(gasit);
                     }
-                    logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
+                    Platform.runLater(() -> logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
                             conexiune.getInetAddress().toString() + " a executat cererea " +
-                                    cerere + " (adauga tura)", LocalDateTime.now()));
+                                    cerere + " (adauga tura)", LocalDateTime.now())));
                     break;
                 }
 
@@ -359,19 +370,19 @@ public class ConexiuneClient extends Thread {
                 }
             }
         } catch (IOException e) {
-            logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
+            Platform.runLater(() -> logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_EROARE,
                     conexiune.getInetAddress().toString() + " a cauzat exceptia " +
-                            e.getMessage(), LocalDateTime.now()));
+                            e.getMessage(), LocalDateTime.now())));
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
+            Platform.runLater(() -> logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_EROARE,
                     conexiune.getInetAddress().toString() + " a cauzat exceptia " +
-                            e.getMessage(), LocalDateTime.now()));
+                            e.getMessage(), LocalDateTime.now())));
             e.printStackTrace();
         } catch (SQLException e) {
-            logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
+            Platform.runLater(() -> logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_EROARE,
                     conexiune.getInetAddress().toString() + " a cauzat exceptia " +
-                            e.getMessage(), LocalDateTime.now()));
+                            e.getMessage(), LocalDateTime.now())));
             e.printStackTrace();
         } finally {
             try {

@@ -1,6 +1,7 @@
 package main.java;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -59,6 +60,8 @@ public class ServerMain extends Application {
         primaryStage.show();
     }
 
+
+
     private class ServiciuServer extends Thread {
 
         private ServerSocket server;
@@ -67,12 +70,12 @@ public class ServerMain extends Application {
         public void run() {
             try {
                 server = new ServerSocket(AdresaPort.PORT);
-                logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
-                        "Serverul accepta!", LocalDateTime.now()));
+                Platform.runLater(() -> logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
+                        "Serverul accepta!", LocalDateTime.now())));
                 while (ruleaza) {
                     Socket conexiune = server.accept();
-                    logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
-                            "Conexiune stabilita cu " + conexiune.getInetAddress().toString(), LocalDateTime.now()));
+                    Platform.runLater(() -> logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
+                            "Conexiune stabilita cu " + conexiune.getInetAddress().toString(), LocalDateTime.now())));
                     ObjectInputStream input = new ObjectInputStream(conexiune.getInputStream());
                     ObjectOutputStream output = new ObjectOutputStream(conexiune.getOutputStream());
                     int cerere =  input.readInt();
@@ -82,8 +85,9 @@ public class ServerMain extends Application {
                         conexiune.close();
                         break;
                     }
-                    else
+                    else {
                         new ConexiuneClient(conexiune, cerere, input, output, logger).start();
+                    }
                 }
             } catch (EOFException e) {
                 e.printStackTrace();

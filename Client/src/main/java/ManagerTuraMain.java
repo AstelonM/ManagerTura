@@ -37,7 +37,7 @@ public class ManagerTuraMain extends Application {
 
     private Stage fereastraDialog;
     private Label status;
-    private Label centerLabel;
+    private static Label centerLabel;
     private Label post;
     private static Logger logger;
 
@@ -193,6 +193,7 @@ public class ManagerTuraMain extends Application {
         tura3Col = new TableColumn<>(TEXT_TURA_3);
         calendar.getColumns().addAll(dataCol, tura1Col, tura2Col, tura3Col);
         calendar.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        VBox.setVgrow(calendar, Priority.ALWAYS);
 
         logger = new Logger();
         centerLabelBox.getChildren().addAll(centerLeftArrow, centerLabel, centerRightArrow);
@@ -210,13 +211,13 @@ public class ManagerTuraMain extends Application {
 
 
         //Incepe lantul de cereri la baza de date
-        ConexiuneServerAngajati conA = new ConexiuneServerAngajati(null);
+        ConexiuneServerAngajati conA = new ConexiuneServerAngajati(null, logger);
         conA.setOnSucceeded(event -> {
             logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
                     "Angajati de la baza de date!", LocalDateTime.now()));
             angajati.addAll(conA.getValue());
             listaAngajati.setItems(angajati);
-            ConexiuneServerPosturi conP = new ConexiuneServerPosturi();
+            ConexiuneServerPosturi conP = new ConexiuneServerPosturi(logger);
             conP.setOnSucceeded(event1 -> {
                 logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
                         "Posturi de la baza de date!", LocalDateTime.now()));
@@ -277,7 +278,7 @@ public class ManagerTuraMain extends Application {
             programCurent.remove(0, programCurent.size());
         Date start = Date.valueOf(LocalDate.of(an, luna, 1));
         Date end = Date.valueOf(LocalDate.of(an, luna, nrZile));
-        ConexiuneServerLuna conL = new ConexiuneServerLuna(start, end, postCurent);
+        ConexiuneServerLuna conL = new ConexiuneServerLuna(start, end, postCurent, logger);
         int finalAn = an;
         int finalLuna = luna;
         conL.setOnSucceeded(event -> {
@@ -294,7 +295,7 @@ public class ManagerTuraMain extends Application {
             }
             creazaCalendarul(inceput);
             if (cereAngajati) {
-                ConexiuneServerAngajati conA = new ConexiuneServerAngajati(postCurent);
+                ConexiuneServerAngajati conA = new ConexiuneServerAngajati(postCurent, logger);
                 conA.setOnSucceeded(event1 -> {
                     if (!angajati.isEmpty())
                         angajati.remove(0, angajati.size());
@@ -334,7 +335,7 @@ public class ManagerTuraMain extends Application {
             return;
         }
         angajati.add(angajat);
-        ConexiuneServerAdauga con = new ConexiuneServerAdauga(Cerere.ANGAJAT_NOU, angajat);
+        ConexiuneServerAdauga con = new ConexiuneServerAdauga(Cerere.ANGAJAT_NOU, angajat, logger);
         con.start();
     }
 
@@ -346,7 +347,7 @@ public class ManagerTuraMain extends Application {
             return;
         }
         posturi.add(post);
-        ConexiuneServerAdauga con = new ConexiuneServerAdauga(Cerere.POST_NOU, post);
+        ConexiuneServerAdauga con = new ConexiuneServerAdauga(Cerere.POST_NOU, post, logger);
         con.start();
     }
 
@@ -358,7 +359,7 @@ public class ManagerTuraMain extends Application {
                 return;
             postCurent = posturi.get(0);
             post.setText(MESAJ_POST + postCurent.getNume());
-            ConexiuneServerAngajati con = new ConexiuneServerAngajati(postCurent);
+            ConexiuneServerAngajati con = new ConexiuneServerAngajati(postCurent, logger);
             con.setOnSucceeded(event -> {
                 logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
                         "Angajati de la baza de date!", LocalDateTime.now()));
@@ -369,7 +370,7 @@ public class ManagerTuraMain extends Application {
             con.start();
         } else {
             this.status.setText(MESAJ_STATUS + "Vizualizare program");
-            ConexiuneServerAngajati con = new ConexiuneServerAngajati(null);
+            ConexiuneServerAngajati con = new ConexiuneServerAngajati(null, logger);
             con.setOnSucceeded(event -> {
                 logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
                         "Angajati de la baza de date!", LocalDateTime.now()));
@@ -493,19 +494,22 @@ public class ManagerTuraMain extends Application {
                     }
                     Zi zi = programCurent.get(indexCelula);
                     Angajat angajat = angajati.get(indexAngajat);
-                    ConexiuneServerTura con = new ConexiuneServerTura(angajat, zi, indexColoana);
+                    ConexiuneServerTura con = new ConexiuneServerTura(angajat, zi, indexColoana, logger);
                     int finalIndexColoana = indexColoana;
                     String finalTextTura = textTura;
+                    int finalIndexCelula = indexCelula + 1;
                     con.setOnSucceeded(event1 -> {
                         boolean gasit = con.getValue();
                         if (!gasit) {
                             logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_NORMAL,
-                                    "Angajatul " + angajat.getNume() + " adaugat pe " + finalTextTura, LocalDateTime.now()));
+                                    "Angajatul " + angajat.getNume() + " adaugat pe " + finalTextTura +
+                                    " pe data de " + finalIndexCelula + " " + centerLabel.getText(), LocalDateTime.now()));
                             zi.setAngajat(angajat, finalIndexColoana);
                             calendar.refresh();
                         } else
                             logger.adaugaEveniment(new EvenimentLogger(EvenimentLogger.GRAD_ATENTIE,
-                                    "Angajatul " + angajat.getNume() + " nu poate fi adaugat pe " + finalTextTura, LocalDateTime.now()));
+                                    "Angajatul " + angajat.getNume() + " nu poate fi adaugat pe " + finalTextTura +
+                                    " pe data de " + finalIndexCelula + " " + centerLabel.getText() , LocalDateTime.now()));
                     });
                     con.start();
                     success = true;

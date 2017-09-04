@@ -1,24 +1,25 @@
 package main.java.servicii;
 
+import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import main.java.AdresaPort;
-import main.java.Angajat;
-import main.java.Cerere;
-import main.java.Post;
+import main.java.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ConexiuneServerAngajati extends Service<ArrayList<Angajat>> {
 
     private Post post;
+    private Logger logger;
 
-    public ConexiuneServerAngajati(Post post) {
+    public ConexiuneServerAngajati(Post post, Logger logger) {
         this.post = post;
+        this.logger = logger;
     }
 
     @Override
@@ -41,8 +42,12 @@ public class ConexiuneServerAngajati extends Service<ArrayList<Angajat>> {
                     output.flush();
                     lista = (ArrayList<Angajat>) input.readObject();
                 } catch (IOException e) {
+                    Platform.runLater(() -> logger.adaugaEveniment(new Logger.EvenimentLogger(Logger.EvenimentLogger.GRAD_EROARE,
+                            "Nu s-au putut cere angajatii: " + e.getMessage(), LocalDateTime.now())));
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
+                    Platform.runLater(() -> logger.adaugaEveniment(new Logger.EvenimentLogger(Logger.EvenimentLogger.GRAD_EROARE,
+                            "Nu s-au putut cere angajatii: " + e.getMessage(), LocalDateTime.now())));
                     e.printStackTrace();
                 }
                 return lista;
